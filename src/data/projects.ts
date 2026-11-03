@@ -28,7 +28,13 @@ export const projects: Project[] = [
     image: 'images/inverter-emi-shielding.png',
     imageAlt: 'Aluminum inverter enclosure with orange high-voltage connectors',
   },
-  { slug: 'fsae-battery-pack', title: 'FSAE Battery Pack', summary: '' },
+  {
+    slug: 'fsae-battery-pack',
+    title: 'FSAE Battery Pack',
+    summary: '',
+    image: 'images/fsae-battery-pack.jpg',
+    imageAlt: 'Fully assembled FSAE battery pack enclosure on a workbench',
+  },
   {
     slug: 'wheel-interface-pcb',
     title: 'Wheel Interface PCB',
