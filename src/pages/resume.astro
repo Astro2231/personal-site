@@ -1,0 +1,86 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const pdf = `${base}${site.resume}`;
+---
+
+<Base title={`Resume — ${site.name}`}>
+  <div class="bar">
+    <a class="back" href={base}>← Home</a>
+    <a class="button" id="download" href={pdf} download>Download resume</a>
+  </div>
+  <div class="viewer" id="viewer" data-pdf={pdf}>
+    <p class="fallback">Loading resume… If it doesn’t appear, <a href={pdf}>open the PDF</a>.</p>
+  </div>
+</Base>
+
+<script>
+  import * as pdfjs from 'pdfjs-dist';
+  import workerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
+
+  // Arriving from the homepage button (?download=1) also starts the download.
+  if (new URLSearchParams(location.search).has('download')) {
+    document.getElementById('download')?.click();
+    history.replaceState(null, '', location.pathname);
+  }
+
+  // Render each page to a canvas so the resume shows in every browser, phones included.
+  pdfjs.GlobalWorkerOptions.workerSrc = workerUrl;
+  const viewer = document.getElementById('viewer') as HTMLElement;
+
+  async function render() {
+    const doc = await pdfjs.getDocument({ url: viewer.dataset.pdf! }).promise;
+    const width = viewer.clientWidth;
+    const dpr = window.devicePixelRatio || 1;
+    const pages: HTMLCanvasElement[] = [];
+    for (let n = 1; n <= doc.numPages; n++) {
+      const page = await doc.getPage(n);
+      const scale = width / page.getViewport({ scale: 1 }).width;
+      const viewport = page.getViewport({ scale: scale * dpr });
+      const canvas = document.createElement('canvas');
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      canvas.setAttribute('role', 'img');
+      canvas.setAttribute('aria-label', `Resume page ${n}`);
+      await page.render({ canvas, viewport }).promise;
+      pages.push(canvas);
+    }
+    viewer.replaceChildren(...pages);
+  }
+
+  render().catch((err) => console.error('Could not render resume', err));
+</script>
+
+<style>
+  .bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    max-width: 1000px;
+    margin: 0 auto 20px;
+  }
+  .back {
+    color: var(--accent-text);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .back:hover { color: #fff; }
+  .viewer {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .viewer :global(canvas) {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    box-shadow: 0 8px 30px rgb(0 0 0 / 0.35);
+    background: #fff;
+  }
+  .fallback { text-align: center; }
+</style>
