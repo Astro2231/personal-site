@@ -9,7 +9,7 @@ const pdf = `${base}${site.resume}`;
 <Base title={`Resume — ${site.name}`}>
   <div class="bar">
     <a class="back" href={base}>← Home</a>
-    <a class="button" id="download" href={pdf} download>Download resume</a>
+    <a class="button" href={pdf} download>Download resume</a>
   </div>
   <div class="viewer" id="viewer" data-pdf={pdf}>
     <p class="fallback">Loading resume… If it doesn’t appear, <a href={pdf}>open the PDF</a>.</p>
@@ -19,12 +19,6 @@ const pdf = `${base}${site.resume}`;
 <script>
   import * as pdfjs from 'pdfjs-dist';
   import workerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
-
-  // Arriving from the homepage button (?download=1) also starts the download.
-  if (new URLSearchParams(location.search).has('download')) {
-    document.getElementById('download')?.click();
-    history.replaceState(null, '', location.pathname);
-  }
 
   // Render each page to a canvas so the resume shows in every browser, phones included.
   pdfjs.GlobalWorkerOptions.workerSrc = workerUrl;
