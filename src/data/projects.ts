@@ -13,10 +13,10 @@ export interface Project {
 }
 
 export const projects: Project[] = [
-  { slug: 'project-1', title: 'Project 1', summary: '' },
-  { slug: 'project-2', title: 'Project 2', summary: '' },
-  { slug: 'project-3', title: 'Project 3', summary: '' },
-  { slug: 'project-4', title: 'Project 4', summary: '' },
-  { slug: 'project-5', title: 'Project 5', summary: '' },
-  { slug: 'project-6', title: 'Project 6', summary: '' },
+  { slug: 'project-1', title: 'Coming soon', summary: '' },
+  { slug: 'project-2', title: 'Coming soon', summary: '' },
+  { slug: 'project-3', title: 'Coming soon', summary: '' },
+  { slug: 'project-4', title: 'Coming soon', summary: '' },
+  { slug: 'project-5', title: 'Coming soon', summary: '' },
+  { slug: 'project-6', title: 'Coming soon', summary: '' },
 ];
