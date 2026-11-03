@@ -31,7 +31,7 @@ export const projects: Project[] = [
     slug: 'inverter-emi-shielding',
     title: 'Inverter EMI Shielding',
     summary: '',
-    image: 'images/inverter-emi-shielding.png',
+    image: 'images/inverter-emi-shielding.jpg',
     imageAlt: 'Aluminum inverter enclosure with orange high-voltage connectors',
   },
   {
@@ -45,7 +45,7 @@ export const projects: Project[] = [
     slug: 'wheel-interface-pcb',
     title: 'Wheel Interface PCB',
     summary: '',
-    image: 'images/wheel-interface-pcb.png',
+    image: 'images/wheel-interface-pcb.jpg',
     imageAlt: 'Green wheel interface circuit board',
   },
   {
