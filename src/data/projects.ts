@@ -13,10 +13,10 @@ export interface Project {
 }
 
 export const projects: Project[] = [
-  { slug: 'project-1', title: 'Coming soon', summary: '' },
-  { slug: 'project-2', title: 'Coming soon', summary: '' },
-  { slug: 'project-3', title: 'Coming soon', summary: '' },
-  { slug: 'project-4', title: 'Coming soon', summary: '' },
-  { slug: 'project-5', title: 'Coming soon', summary: '' },
-  { slug: 'project-6', title: 'Coming soon', summary: '' },
+  { slug: 'radar-mechanical-design', title: 'Radar Mechanical Design', summary: '' },
+  { slug: 'fsae-electric-powertrain', title: 'FSAE Electric Powertrain', summary: '' },
+  { slug: 'inverter-emi-shielding', title: 'Inverter EMI Shielding', summary: '' },
+  { slug: 'fsae-battery-pack', title: 'FSAE Battery Pack', summary: '' },
+  { slug: 'wheel-interface-pcb', title: 'Wheel Interface PCB', summary: '' },
+  { slug: '12lb-combat-robot', title: '12lb Combat Robot', summary: '' },
 ];
