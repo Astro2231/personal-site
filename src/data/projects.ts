@@ -13,7 +13,13 @@ export interface Project {
 }
 
 export const projects: Project[] = [
-  { slug: 'radar-mechanical-design', title: 'Radar Mechanical Design', summary: '' },
+  {
+    slug: 'radar-mechanical-design',
+    title: 'Radar Mechanical Design',
+    summary: '',
+    image: 'images/radar-mechanical-design.png',
+    imageAlt: 'Rendering of a radar array enclosure',
+  },
   {
     slug: 'fsae-electric-powertrain',
     title: 'FSAE Electric Powertrain',
