@@ -9,7 +9,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 <Base title={`${site.name} — Portfolio`}>
   <header class="hero">
     <div class="hero-text">
-      <h1>{site.name}</h1>
+      <h1 class="page-title">{site.name}</h1>
       <p>{site.intro}</p>
       <a class="button" href={`${base}resume/`}>Resume</a>
     </div>
@@ -20,6 +20,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
         <div class="hero-image placeholder">Coming soon</div>
       )
     }
+    <p class="hero-note">*website under construction</p>
   </header>
 
   <section id="projects" aria-label="Projects">
@@ -29,11 +30,11 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
           <li>
             <a class="card" href={`${base}projects/${p.slug}/`}>
               {p.image ? (
-                <img class="card-image" src={`${base}${p.image}`} alt={p.imageAlt ?? ''} />
+                <img class="media card-image" src={`${base}${p.image}`} alt={p.imageAlt ?? ''} />
               ) : (
-                <div class="card-image placeholder">Coming soon</div>
+                <div class="media card-image placeholder">Coming soon</div>
               )}
-              <span class="card-title">{p.title}</span>
+              <span class="card-title rule-top">{p.title}</span>
             </a>
           </li>
         ))
@@ -42,29 +43,53 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
   </section>
 </Base>
 
+<script>
+  // Keep the hero photo as tall as the text next to it.
+  const hero = document.querySelector<HTMLElement>('.hero');
+  const text = document.querySelector<HTMLElement>('.hero-text');
+  if (hero && text) {
+    new ResizeObserver(() => {
+      hero.style.setProperty('--hero-h', `${text.offsetHeight}px`);
+    }).observe(text);
+  }
+</script>
+
 <style>
   .hero {
+    position: relative;
     display: grid;
     grid-template-columns: 1.4fr 1fr;
     gap: 48px;
     align-items: start;
     margin-bottom: 72px;
   }
-  h1 {
-    color: var(--accent);
-    font-size: clamp(2.2rem, 5vw, 3.2rem);
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    margin: 0 0 12px;
-  }
   .hero-text p {
     margin: 0 0 24px;
     max-width: 34rem;
   }
+  /* Square photo sized to the height of the text beside it (--hero-h is set
+     by the script below; 320px is the fallback before it runs). */
   .hero-image {
-    width: 100%;
-    aspect-ratio: 3 / 2;
+    width: var(--hero-h, 320px);
+    max-width: 100%;
+    aspect-ratio: 1 / 1;
+    justify-self: end;
+    margin-right: 300px; /* OFFSET: moves the photo 300px left of its column's right edge */
     object-fit: cover;
+    object-position: center 15%;
+    border-radius: 50%;
+  }
+  /* Note in the space the OFFSET above leaves right of the photo. Its text
+     style is inherited from the page, same as the intro under the name. */
+  .hero-note {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 276px;
+    height: var(--hero-h, 320px);
+    margin: 0;
+    display: flex;
+    align-items: center;
   }
 
   .grid {
@@ -82,10 +107,6 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
     text-decoration: none;
   }
   .card-image {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
-    border-radius: var(--radius);
     transition: transform 0.15s ease;
   }
   .card:hover .card-image,
@@ -99,7 +120,6 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
     font-weight: 700;
     font-size: 1.05rem;
     padding-top: 10px;
-    border-top: 2px solid var(--rule);
     margin-top: 10px;
   }
 
@@ -108,6 +128,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
   }
   @media (max-width: 640px) {
     .hero { grid-template-columns: 1fr; gap: 28px; margin-bottom: 48px; }
+    .hero-image { width: 100%; max-width: 380px; justify-self: center; margin-right: 0; }
+    .hero-note { position: static; width: auto; height: auto; justify-content: center; }
     .grid { grid-template-columns: 1fr; }
   }
 </style>

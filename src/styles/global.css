@@ -48,6 +48,40 @@ main {
 }
 .button:hover, .button:focus-visible { background: var(--button-hover); }
 
+/* Shared page pieces, derived from the homepage design. */
+
+/* Page heading — matches the name at the top of the homepage. */
+.page-title {
+  color: var(--accent);
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  margin: 0 0 12px;
+}
+
+/* "← Home" / "← All projects" links. */
+.back {
+  display: inline-block;
+  color: var(--accent-text);
+  text-decoration: none;
+  font-weight: 600;
+}
+.back:hover, .back:focus-visible { color: #fff; }
+
+/* Rounded image used by homepage cards and project pages. */
+.media {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+/* Divider line used under card titles on the homepage. */
+.rule-top {
+  border-top: 2px solid var(--rule);
+}
+
 .placeholder {
   background: var(--placeholder);
   color: var(--placeholder-text);
