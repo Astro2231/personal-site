@@ -1,0 +1,23 @@
+<!doctype html>
+<!--
+  The site lives at https://benpaldy.dev (hosted on Cloudflare). GitHub Pages
+  only serves this file, as both index.html and 404.html, so every old
+  astro2231.github.io/personal-site/... link lands here and is forwarded to
+  the same page on benpaldy.dev.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Moved to benpaldy.dev</title>
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="https://benpaldy.dev/">
+  <meta http-equiv="refresh" content="0; url=https://benpaldy.dev/">
+  <script>
+    var path = location.pathname.replace(/^\/personal-site/, '') || '/';
+    location.replace('https://benpaldy.dev' + path + location.search + location.hash);
+  </script>
+</head>
+<body>
+  <p>This site has moved to <a href="https://benpaldy.dev/">benpaldy.dev</a>.</p>
+</body>
+</html>
