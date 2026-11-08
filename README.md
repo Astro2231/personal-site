@@ -34,12 +34,14 @@ src/
 
 ```sh
 npm install
-npm run dev      # http://localhost:4321/personal-site/
+npm run dev      # http://localhost:4321/
 npm run build    # outputs to dist/
 ```
 
 ## Deploying
 
 Every push to `main` runs `.github/workflows/deploy.yml`, which builds the site and
-publishes it to https://astro2231.github.io/personal-site/. One-time setup: in the
-repo's **Settings → Pages**, set **Source** to **GitHub Actions**.
+publishes it to https://benpaldy.dev (the old astro2231.github.io/personal-site/
+address redirects there). One-time setup: in the
+repo's **Settings → Pages**, set **Source** to **GitHub Actions** and **Custom domain**
+to `benpaldy.dev`.
