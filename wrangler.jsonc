@@ -1,0 +1,10 @@
+{
+  // Static site: Cloudflare Workers serves the Astro build output directly.
+  // Having this file stops `wrangler deploy` from auto-configuring the project.
+  "name": "personal-site",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  }
+}
