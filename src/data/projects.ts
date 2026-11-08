@@ -72,7 +72,7 @@ export const projects: Project[] = [
   {
     slug: 'shock-potentiometer-dyno',
     title: 'Shock Potentiometer Dyno',
-    image: 'images/shock-pot-dyno.jpg',
+    image: 'images/Shock Pot Dyno IRL picture.png',
     imageAlt: 'Black enclosure of the shock potentiometer dyno with ribbon cable on a workbench',
   },
   {
