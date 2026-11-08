@@ -54,21 +54,31 @@ export const projects: Project[] = [
   {
     slug: '3lb-combat-robot',
     title: '3lb Combat Robot',
+    image: 'images/3lb combat robot.png',
+    imageAlt: 'CAD rendering of a black 3lb combat robot with orange wheels and front wedge forks',
   },
   {
     slug: 'fsae-steering-wheel',
     title: 'FSAE Steering Wheel',
+    image: 'images/Sim Wheel CAD Image.png',
+    imageAlt: 'CAD rendering of a steering wheel with black grips, orange buttons and rotary knobs',
   },
   {
     slug: 'fsae-wing-mounting-plates',
     title: 'FSAE Wing Mounting Plates',
+    image: 'images/Rear Wing fb25.jpg',
+    imageAlt: 'Carbon fiber FSAE rear wing with machined aluminum mounting plates',
   },
   {
     slug: 'shock-potentiometer-dyno',
     title: 'Shock Potentiometer Dyno',
+    image: 'images/Shock Pot Dyno IRL picture.png',
+    imageAlt: 'Black enclosure of the shock potentiometer dyno with ribbon cable on a workbench',
   },
   {
     slug: 'first-robotics',
     title: 'FIRST Robotics (High School)',
+    image: 'images/frc robot driveby.png',
+    imageAlt: 'FRC team 6423 robot driving across the competition field',
   },
 ];

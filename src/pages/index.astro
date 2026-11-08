@@ -55,14 +55,17 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 </script>
 
 <style>
+  /* Hero layout, wide screens: intro text | headshot | note.
+     Fixed shares of the width, so the photo (sized from the text's height)
+     can never squeeze the text column. */
   .hero {
-    position: relative;
     display: grid;
-    grid-template-columns: 1.4fr 1fr;
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 0.9fr);
     gap: 48px;
-    align-items: start;
+    align-items: center;
     margin-bottom: 72px;
   }
+  .hero-text { align-self: start; }
   .hero-text p {
     margin: 0 0 24px;
     max-width: 34rem;
@@ -73,23 +76,14 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
     width: var(--hero-h, 320px);
     max-width: 100%;
     aspect-ratio: 1 / 1;
-    justify-self: end;
-    margin-right: 300px; /* OFFSET: moves the photo 300px left of its column's right edge */
+    justify-self: center;
     object-fit: cover;
     object-position: center 15%;
     border-radius: 50%;
   }
-  /* Note in the space the OFFSET above leaves right of the photo. Its text
-     style is inherited from the page, same as the intro under the name. */
+  /* Text style is inherited from the page, same as the intro under the name. */
   .hero-note {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 276px;
-    height: var(--hero-h, 320px);
     margin: 0;
-    display: flex;
-    align-items: center;
   }
 
   .grid {
@@ -123,13 +117,17 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
     margin-top: 10px;
   }
 
+  /* Two project columns: the hero uses the same two columns (text over the
+     left one, photo over the right one) and the note drops below both. */
   @media (max-width: 900px) {
     .grid { grid-template-columns: repeat(2, 1fr); }
+    .hero { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 24px; }
+    .hero-note { grid-column: 1 / -1; }
   }
   @media (max-width: 640px) {
     .hero { grid-template-columns: 1fr; gap: 28px; margin-bottom: 48px; }
-    .hero-image { width: 100%; max-width: 380px; justify-self: center; margin-right: 0; }
-    .hero-note { position: static; width: auto; height: auto; justify-content: center; }
+    .hero-image { width: 100%; max-width: 380px; }
+    .hero-note { text-align: center; }
     .grid { grid-template-columns: 1fr; }
   }
 </style>
