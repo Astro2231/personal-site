@@ -40,8 +40,12 @@ npm run build    # outputs to dist/
 
 ## Deploying
 
-Every push to `main` runs `.github/workflows/deploy.yml`, which builds the site and
-publishes it to https://benpaldy.dev (the old astro2231.github.io/personal-site/
-address redirects there). One-time setup: in the
-repo's **Settings → Pages**, set **Source** to **GitHub Actions** and **Custom domain**
-to `benpaldy.dev`.
+The site is hosted on Cloudflare Workers at https://benpaldy.dev (`wrangler.jsonc`
+serves the `dist/` build output).
+
+GitHub Pages no longer hosts the site. On every push to `main`,
+`.github/workflows/deploy.yml` publishes only `.github/pages-redirect/index.html`
+(as both `index.html` and `404.html`), so any old
+https://astro2231.github.io/personal-site/... link forwards to the same page on
+benpaldy.dev. In the repo's **Settings → Pages**, **Source** must stay on
+**GitHub Actions** and **Custom domain** must stay empty.
